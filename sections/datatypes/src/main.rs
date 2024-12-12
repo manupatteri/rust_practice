@@ -11,6 +11,10 @@ fn main() {
     chars();
     tuples();
     arrays();
+    strings(String::from("Tom"));
+}
+fn strings(name : String) {
+    println!("His name is {name}");
 }
 fn arrays() {
   let array_without_type_count  = [1,2,3,4];
