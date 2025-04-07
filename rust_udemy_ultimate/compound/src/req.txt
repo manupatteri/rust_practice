@@ -1,0 +1,9 @@
+1. Create a tuple with one integer, String and a float without initialization
+
+2. Create a tuple with one integer, String and a float and initalize to 3, "hello" , 4.13
+
+3. Create a tuple without type and initalize to 3, "hello" , 4.13
+
+4. Access each element and print it
+
+4. Initialize 3 separate variable with elements of a tuple  and print it
