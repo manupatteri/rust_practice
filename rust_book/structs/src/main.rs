@@ -54,7 +54,8 @@ fn main() {
 	//create_unit_like_structs();
 	//area_by_vars();
 	//area_by_tuple();
-	area_by_struct();
+	//area_by_struct();
+	test_struct();
 }
 fn create_tuple_structs() {
 	let area = TupleStructArea(10, 20);
@@ -95,4 +96,54 @@ fn area_by_struct() {
 }
 fn area_by_struct_int(rectangle : &Rectangle) -> u32{
 	rectangle.width * rectangle.length
+}
+struct Table {
+	name : String,
+	file : String,
+	size : u64
+}
+impl Table {
+	fn new () -> Self {
+		Self {
+			name : "table_name".to_string(),
+			file : "table_file".to_string(),
+			size : 256
+		}
+	}	
+}
+fn test_struct() {
+	let mut my_table = Table {
+		name: "transaction_details".to_string(),
+		file: "transaction_details.db".to_string(),
+		size: 1024
+		};
+	my_table.size = 2048;
+	println!("{}", my_table.name);
+	println!("{}", my_table.file);
+	my_table = build_table_without_init("transaction_status".to_string(), "tnx_status.db".to_string(), 2048);
+	println!("{}", my_table.name);
+	println!("{}", my_table.file);
+	my_table = build_table_with_init("transaction_status".to_string(), "tnx_status.db".to_string(), 2048);
+	println!("{}", my_table.name);
+	println!("{}", my_table.file);
+
+	my_table = Table::new();
+	println!("{}", my_table.name);
+	println!("{}", my_table.file);
+
+	
+}
+fn build_table_without_init(name: String, file: String, size:u64) -> Table {
+	Table {
+		file : file,
+		name : name,
+		size : size
+	}
+}
+fn build_table_with_init(name: String, file: String, size:u64) -> Table {
+	Table {
+		file ,
+		name ,
+		size 
+	}
 }
