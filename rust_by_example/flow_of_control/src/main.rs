@@ -1,9 +1,13 @@
 fn main() {
-    println!("Hello, world!");
-    if_else(-5);
-    if_else(0);
-    if_else(9);
-    return_from_if_else(10);
+	println!("Hello, world!");
+	if_else(-5);
+	if_else(0);
+	if_else(9);
+	return_from_if_else(10);
+	println!("result is {}", loop_test(5, 3));
+	inner_outer_labels();
+	test_while("John".to_string(), 40);
+
 }
 fn if_else(n: i32) {
 	if n < 0 {
@@ -53,4 +57,49 @@ fn return_from_if_else (n: i32) {
 //For more information about this error, try `rustc --explain E0308`.
 		};
 	println! ( " result is {} ", big_n);
+}
+fn loop_test(break_counter: u32, continue_counter: u32) -> u32 {
+	let mut count = 0;
+	loop {
+		count += 1;
+		if count == continue_counter {
+			println!("Skipping element # {} ", count);
+			continue;
+		}
+		println!("Processing element # {} ", count);
+		if count == break_counter {
+			println!("Breaking the loop at # {} ", count);
+			break count;
+		}
+	}
+	//if break count is not there, this is needed
+	//count 
+}
+fn inner_outer_labels() {
+	'outer : loop {
+		println!("entered outer loop ");
+		'inner : loop {
+			println!("entered inner loop ");
+			break 'outer;
+		}
+	}
+	println!("exited outer loop ");
+}
+fn test_while(name: String, count: u32) {
+	let mut n = 1;
+	println!("{} {}", name, count);
+	while n < count {
+		if n % 15 == 0 {
+			println!("fizzbuzz");
+			break;
+		} else if n % 3 == 0 {
+			println!("fizz");
+		} else if n % 5 == 0 {
+			println!("buzz");
+		} else {
+			println!("{}", n);
+		}
+		n += 1;
+		
+	}
 }
