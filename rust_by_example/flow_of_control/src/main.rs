@@ -7,6 +7,7 @@ fn main() {
 	println!("result is {}", loop_test(5, 3));
 	inner_outer_labels();
 	test_while("John".to_string(), 40);
+	test_for(1, 20);
 
 }
 fn if_else(n: i32) {
@@ -101,5 +102,18 @@ fn test_while(name: String, count: u32) {
 		}
 		n += 1;
 		
+	}
+}
+fn test_for (start: i32, end: i32) { 
+	for n in start..end {
+		if n % 15 == 0 {
+			println!("   fizzbuzz");
+		} else if n % 3 == 0 {
+			println!(" fizz");
+		} else if n % 5 == 0 {
+			println!("  buzz");
+		} else {
+			println!("{}", n);
+		}	
 	}
 }
