@@ -8,6 +8,7 @@ fn main() {
 	inner_outer_labels();
 	test_while("John".to_string(), 40);
 	test_for(1, 20);
+	test_match(20);
 
 }
 fn if_else(n: i32) {
@@ -115,5 +116,20 @@ fn test_for (start: i32, end: i32) {
 		} else {
 			println!("{}", n);
 		}	
+	}
+}
+fn test_match(number: i32) {
+	match number {
+		//20 => println! ("Twenty"),
+		20..=29 => println! ("Twenties"),
+		//20..29 => 
+		//Gives the error https://github.com/rust-lang/rust/issues/37854
+		_ => println! ("match all"),
+	}
+	let flag = true;
+	match flag {
+		true => println! ("True"),
+		false => println! ("False"), // error[E0004]: non-exhaustive patterns: `false` not covered
+
 	}
 }
