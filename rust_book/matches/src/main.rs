@@ -1,3 +1,27 @@
+#[derive(Debug)] // so we can inspect the state in a minute
+enum UsState {
+    Alabama,
+    Alaska,
+    // --snip--
+}
+
+enum Coin {
+    Penny,
+    Nickel,
+    Dime,
+    Quarter(UsState),
+}
+fn value_in_cents(coin: Coin) -> u8 {
+    match coin {
+        Coin::Penny => 1,
+        Coin::Nickel => 5,
+        Coin::Dime => 10,
+        Coin::Quarter(state) => {
+            println!("State quarter from {state:?}!");
+            25
+        }
+    }
+}
 fn main() {
 	let sides = 4;
 	match sides {
@@ -13,6 +37,9 @@ fn main() {
 	};
 	println!("{}", my_choice);
 	compare_match_with_if_let();	
+        value_in_cents(Coin::Quarter(UsState::Alaska));
+        coin_with_match_and_if_let(Coin::Quarter(UsState::Alabama));
+        coin_with_match_and_if_let(Coin::Penny);
 }
 fn compare_match_with_if_let() -> i32 {
 	let config_max = Some(6);
@@ -24,4 +51,11 @@ fn compare_match_with_if_let() -> i32 {
             println! ("if let: Max is {max} ");
         }
 	return 4;
+}
+fn coin_with_match_and_if_let(coin: Coin) {
+    if let Coin::Quarter(state) = coin { 
+        println !("State Quarter from {state:?} ");
+    } else {
+        println !("Not a quarter ");
+    }
 }
