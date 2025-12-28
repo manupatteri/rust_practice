@@ -10,6 +10,9 @@ fn main() {
     func_hash_map(1,"95101".to_string() , "San Jose".to_string()); 
     func_hash_map(2,"95101".to_string() , "San Jose".to_string()); 
     func_hash_map(3,"95101".to_string() , "San Jose".to_string()); 
+    another_func1();
+    another_func_with_params1(45);
+    another_fun_with_multiple_params(1, "joe".to_str(), 'c');
 }
 fn another_func() {
   println!("another function");
@@ -46,4 +49,13 @@ fn func_hash_map(counter: u64, key: String, value: String) -> bool {
 		return false;
 	}	
 }
-
+fn another_func1() {
+    println!("another_func1: Hello world");
+}
+fn another_func_with_params1(num: i32) {
+    println! ("another_func_with_params1: {}", num);
+    println! ("another_func_with_params1: {num}");
+}
+fn another_fun_with_multiple_params(id: i32, name: String, initial: char) {
+    println!(" {id} {name} {initial} ");
+}
