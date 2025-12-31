@@ -17,6 +17,8 @@ fn main() {
     chars1();
     bools1();
     floats();
+    tuples1();
+    arrays1();
 }
 fn strings(name : String) {
     println!("His name is {name}");
@@ -32,7 +34,7 @@ fn arrays() {
   //random number within a range
   let n1: usize = rng.gen_range(0..5);
   array_elem  = array_without_type_count[n1];
-  println!("got a safe index {n1} element at that index is  {array_elem}");
+  //println!("got a safe index {n1} element at that index is  {array_elem}");
 }
 fn tuples() {
     let x : (i32, f64, u8) = (400, 3.2, 6);
@@ -122,4 +124,27 @@ fn floats() {
         float_default,
         mem::size_of_val(&float_default),
         );
+}
+fn tuples1() {
+    let mytuple = (2 , "name", 4.5);
+    println! ("Accessing Tuple with index {} {} ", mytuple.0, mytuple.2);
+    let mytuple1 = ("joe", true);
+    let (name, flag) = mytuple1;
+    println! ("Destructuring Tuple {} {} ", flag, name);
+    let mytuple1 = ("joe", true);
+    let mut mytuple2 = ("joe", true);
+    println! ("Mutable before modification {} {} ", mytuple2.0, mytuple2.1);
+    mytuple2.0 = "john";
+    mytuple2.1 = false;
+    println! ("Mutable after modification {} {} ", mytuple2.0, mytuple2.1);
+
+}
+fn arrays1() {
+    let myarray = ["east", "west", "north", "south"];
+    println! ("Declaring an array {:?}", myarray);
+    let myarray_with_type : [&str ; 4] = ["left", "right", "up", "down"];
+    println! ("Declaring an array {:?}", myarray_with_type);
+    println! ("Accessing an array element {:?}", myarray_with_type[3]);
+    let mut rng = rand::thread_rng();
+    println! ("Accessing an element randomly {:?}", myarray_with_type[rng.gen_range(0..5)]);
 }
