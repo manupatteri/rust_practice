@@ -12,7 +12,8 @@ fn main() {
     func_hash_map(3,"95101".to_string() , "San Jose".to_string()); 
     another_func1();
     another_func_with_params1(45);
-    another_fun_with_multiple_params(1, "joe".to_str(), 'c');
+    //another_fun_with_multiple_params(1, "joe".to_str(), 'c');
+    println!("another_fun_with_return_value : {}", another_fun_with_return_value(4));
 }
 fn another_func() {
   println!("another function");
@@ -58,4 +59,13 @@ fn another_func_with_params1(num: i32) {
 }
 fn another_fun_with_multiple_params(id: i32, name: String, initial: char) {
     println!(" {id} {name} {initial} ");
+}
+//function is defined as 
+//`fn foo_func(<args>) {
+//}
+//Rust uses snake case for function and variable names. 
+//Functions can be defined anywhere where it can be seen by caller.
+//parameters appear in function definition and arguments are used when invoking them.
+fn another_fun_with_return_value(input: i32) -> i32 {
+    return input * 5 
 }
