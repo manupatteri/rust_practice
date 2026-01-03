@@ -19,6 +19,7 @@ fn main() {
     floats();
     tuples1();
     arrays1();
+    array_tuples2();
 }
 fn strings(name : String) {
     println!("His name is {name}");
@@ -147,4 +148,30 @@ fn arrays1() {
     println! ("Accessing an array element {:?}", myarray_with_type[3]);
     let mut rng = rand::thread_rng();
     println! ("Accessing an element randomly {:?}", myarray_with_type[rng.gen_range(0..5)]);
+}
+fn array_tuples2() {
+    let tuple = (1, 2, 3);
+    println! ("{}", tuple.2);
+    let array = [3,6,9];
+    let array_with_type : [i32;5] = [1,2,3,4,5];
+    let array_with_same_values = [4;5];
+    println! ("Array start");
+    for elem in array_with_same_values {
+        println! ("{elem}");
+    }
+//error[E0381]: used binding `array_with_type_only` isn't initialized
+    //--> src/main.rs:163:17
+//162 |     let array_with_type_only : [u8;4];
+//    |         -------------------- binding declared here but left uninitialized
+//163 |     for elem in array_with_type_only {
+//    |                 ^^^^^^^^^^^^^^^^^^^^ `array_with_type_only` used here but it isn't initialized
+
+//For more information about this error, try `rustc --explain E0381`.
+//
+//    let array_with_type_only : [u8;4];
+//    for elem in array_with_type_only {
+//        elem = 3;
+//        println! ("{elem}");
+//    }
+
 }
