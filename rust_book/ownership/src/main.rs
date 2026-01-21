@@ -35,6 +35,14 @@ fn main() {
     let num = 4;
     makes_copy(num);
     println! ("scalar can be used after being used function use: {num}");
+    let new_string = gives_ownership();
+    println! ("Got ownership: {new_string} ");
+    let operational_string = takes_and_gives_back(String::from("input"));
+    println! ("{operational_string} got ownership back ");
+
+    let input =String::from("John Doe"); 
+    let (my_str, length) = my_calculate_length(input);
+    println! ("{my_str} got length of {length} ");
 
 }
 fn takes_ownership(some_string : String) {
@@ -43,4 +51,16 @@ fn takes_ownership(some_string : String) {
 
 fn makes_copy(some_integer: i32) {
     println!("Copying scalar type:{some_integer}");
+}
+fn gives_ownership() -> String {
+    println! ("gives_ownership : Creates a string and gives ownership to caller");
+    String::from("OwnershipGiven")
+}
+fn takes_and_gives_back(input: String) -> String {
+    println! ("takes_and_gives_back : Got a string and returns ownership to caller");
+    input
+}
+fn my_calculate_length(value:String) -> (String, usize)  {
+    let length = value.len();
+    (value, length)
 }
