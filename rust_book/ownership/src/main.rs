@@ -44,6 +44,9 @@ fn main() {
     let (my_str, length) = my_calculate_length(input);
     println! ("{my_str} got length of {length} ");
 
+    let ref_input = String::from("John");
+    let ref_length = calculate_length(&ref_input);
+    println! ("{ref_input} got length of {ref_length}. The String \"{ref_input}\" is still valid ! ");
 }
 fn takes_ownership(some_string : String) {
     println!("some_string:{some_string} moved here inside Fn takes_ownership");
@@ -63,4 +66,7 @@ fn takes_and_gives_back(input: String) -> String {
 fn my_calculate_length(value:String) -> (String, usize)  {
     let length = value.len();
     (value, length)
+}
+fn calculate_length(string_ref: &String) -> usize {
+    string_ref.len()
 }
