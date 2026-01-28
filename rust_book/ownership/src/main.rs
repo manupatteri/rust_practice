@@ -47,6 +47,12 @@ fn main() {
     let ref_input = String::from("John");
     let ref_length = calculate_length(&ref_input);
     println! ("{ref_input} got length of {ref_length}. The String \"{ref_input}\" is still valid ! ");
+
+    let mut my_string = String::from("hello ");
+    println! ("{my_string} about to be changed in a function via mutable reference ");
+    change_string(&mut my_string);
+    println! ("{my_string} changed in a function via mutable reference ");
+    get_mutable_reference_twice();
 }
 fn takes_ownership(some_string : String) {
     println!("some_string:{some_string} moved here inside Fn takes_ownership");
@@ -69,4 +75,26 @@ fn my_calculate_length(value:String) -> (String, usize)  {
 }
 fn calculate_length(string_ref: &String) -> usize {
     string_ref.len()
+}
+fn change_string(input:&mut String) {
+    input.push_str(" world");
+}
+fn get_mutable_reference_twice() {
+    let mut name = String::from("Manoj");
+
+    let mut_name_ref_first = &mut name;
+//   let mut_name_ref_second = &mut name;
+//   error[E0499]: cannot borrow `name` as mutable more than once at a time
+//  --> src/main.rs:86:31
+//   |
+//85 |     let mut_name_ref_first = &mut name;
+//   |                              --------- first mutable borrow occurs here
+//86 |     let mut_name_ref_second = &mut name;
+//   |                               ^^^^^^^^^ second mutable borrow occurs here
+//87 |     mut_name_ref_first.push_str(" N");
+//   |     --------------------------------- first borrow later used here
+//
+//For more information about this error, try `rustc --explain E0499`.
+    mut_name_ref_first.push_str(" N");
+
 }
