@@ -53,6 +53,10 @@ fn main() {
     change_string(&mut my_string);
     println! ("{my_string} changed in a function via mutable reference ");
     get_mutable_reference_twice();
+    get_unmutable_reference_twice();
+    //let reference_to_nothing = dangle();
+    let copy = no_dangle();
+    println! ("{copy} which is  not dangling");
 }
 fn takes_ownership(some_string : String) {
     println!("some_string:{some_string} moved here inside Fn takes_ownership");
@@ -97,4 +101,53 @@ fn get_mutable_reference_twice() {
 //For more information about this error, try `rustc --explain E0499`.
     mut_name_ref_first.push_str(" N");
 
+}
+fn get_unmutable_reference_twice() {
+    let mut name = String::from("Hello");
+
+    let ref1 = &name;
+    let ref2 = &name;
+
+    println!("ref1: {ref1} ref2: {ref2}");
+
+    let mut_ref1 = &mut name;
+    //error[E0502]: cannot borrow `name` as mutable because it is also borrowed as immutable
+//   --> src/main.rs:109:20
+//    |
+//105 |     let ref2 = &name;
+//    |                ----- immutable borrow occurs here
+//...
+//109 |     let mut_ref1 = &mut name;
+//    |                    ^^^^^^^^^ mutable borrow occurs here
+//110 |     println!("mut_ref1: {mut_ref1} ref2: {ref2}");
+//    |                                           ---- immutable borrow later used here
+//
+//For more information about this error, try `rustc --explain E0502`.
+//    println!("mut_ref1: {mut_ref1} ref2: {ref2}");
+    println!("mut_ref1: {mut_ref1} ");
+
+}
+//fn dangle() -> &String {
+//       Compiling ownership v0.1.0 (/Users/manoj/Documents/Learn/rust/rust_practice/rust_book/ownership)
+//error[E0106]: missing lifetime specifier
+//   --> src/main.rs:128:16
+//    |
+//128 | fn dangle() -> &String {
+//    |                ^ expected named lifetime parameter
+//    |
+//    = help: this function's return type contains a borrowed value, but there is no value for it to be borrowed from
+//help: consider using the `'static` lifetime
+//    |
+//128 | fn dangle() -> &'static String {
+//    |                 +++++++
+//
+//For more information about this error, try `rustc --explain E0106`.
+//error: could not compile `ownership` due to previous error
+
+//    let s = String::from("sample");
+//    &s
+//}
+fn no_dangle() -> String {
+    let s = String::from("sample");
+    s
 }
