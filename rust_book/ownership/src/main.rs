@@ -57,6 +57,9 @@ fn main() {
     //let reference_to_nothing = dangle();
     let copy = no_dangle();
     println! ("{copy} which is  not dangling");
+    let word_length_string = String::from("hello world"); 
+    let word = first_word(&word_length_string);
+    println! ("{word} is where {word_length_string} has first word ending");
 }
 fn takes_ownership(some_string : String) {
     println!("some_string:{some_string} moved here inside Fn takes_ownership");
@@ -150,4 +153,14 @@ fn get_unmutable_reference_twice() {
 fn no_dangle() -> String {
     let s = String::from("sample");
     s
+}
+fn first_word(s: &String) -> usize {
+    let bytes = s.as_bytes();
+
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return i;
+        }
+    }
+    s.len()
 }
