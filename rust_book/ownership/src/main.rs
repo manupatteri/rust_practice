@@ -60,6 +60,9 @@ fn main() {
     let word_length_string = String::from("hello world"); 
     let word = first_word(&word_length_string);
     println! ("{word} is where {word_length_string} has first word ending");
+    print_slices(&String::from("hello world"));
+    let word = first_word_as_slice(&word_length_string);
+    println! ("first word found via slices from {word_length_string} is |{word}| ");
 }
 fn takes_ownership(some_string : String) {
     println!("some_string:{some_string} moved here inside Fn takes_ownership");
@@ -163,4 +166,24 @@ fn first_word(s: &String) -> usize {
         }
     }
     s.len()
+}
+fn print_slices(my_string: &String) {
+    let first = &my_string[0..5];
+    let second = &my_string[6..11];
+    println!("|{second}| : |{first}|");
+    let default_start = &my_string[..5];
+    let mut is_equal = first == default_start;
+    println!("is_equal : |{is_equal}|");
+    let default_end = &my_string[6..];
+    is_equal = second == default_end;
+    println!("is_equal : |{is_equal}|");
+}
+fn first_word_as_slice(my_word: &String) -> &str {
+    let my_word_as_bytes = my_word.as_bytes();
+    for (i, &item) in my_word_as_bytes.iter().enumerate() {
+        if item == b' ' {
+            return &my_word[0..i];
+        }
+    }
+    return my_word;
 }
