@@ -63,6 +63,9 @@ fn main() {
     print_slices(&String::from("hello world"));
     let word = first_word_as_slice(&word_length_string);
     println! ("first word found via slices from {word_length_string} is |{word}| ");
+    let simple_arr = [1,2,3,4,5,6,7];
+    let slice1 = array_slice(&simple_arr);
+    println! ("{:?}", slice1);
 }
 fn takes_ownership(some_string : String) {
     println!("some_string:{some_string} moved here inside Fn takes_ownership");
@@ -186,4 +189,16 @@ fn first_word_as_slice(my_word: &String) -> &str {
         }
     }
     return my_word;
+}
+fn array_slice(arr : &[i32]) -> &[i32] {
+    let mut start = 0;
+    let mut end = 0;
+    for (i, &element) in arr.iter().enumerate() {
+        if element == 3 {
+            start = i;
+        } else if element == 6 {
+            end = i + 1;
+        }
+    }
+    return &arr[start..end];
 }
