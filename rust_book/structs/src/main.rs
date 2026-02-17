@@ -55,7 +55,8 @@ fn main() {
 	//area_by_vars();
 	//area_by_tuple();
 	//area_by_struct();
-	test_struct();
+	//test_struct();
+        use_dbpage();
 }
 fn create_tuple_structs() {
 	let area = TupleStructArea(10, 20);
@@ -146,4 +147,26 @@ fn build_table_with_init(name: String, file: String, size:u64) -> Table {
 		name ,
 		size 
 	}
+}
+fn use_dbpage() {
+        let db_page = build_page();
+        println! ("{}", db_page.page_id);
+        internal_db_page(db_page);
+}
+struct DBPage {
+    page_id : u32,
+    size : u64,
+    free : u64,
+    occupied : u64
+}
+fn build_page() -> DBPage {
+    return DBPage {
+    page_id : 1,
+    size : 8192,
+    free : 4096,
+    occupied : 4096
+    };
+}
+fn internal_db_page(int_db_page : DBPage) {
+        println! ("Internal {}", int_db_page.occupied);
 }
