@@ -57,6 +57,7 @@ fn main() {
 	//area_by_struct();
 	//test_struct();
         use_dbpage();
+        another_use_db_page_ref();
 }
 fn create_tuple_structs() {
 	let area = TupleStructArea(10, 20);
@@ -169,4 +170,15 @@ fn build_page() -> DBPage {
 }
 fn internal_db_page(int_db_page : DBPage) {
         println! ("Internal {}", int_db_page.occupied);
+}
+fn another_use_db_page_ref () {
+    let mut db_page = build_page();
+    println! ("|another_use_db_page_ref|before|{}  ", db_page.page_id);
+    internal_db_page_ref(&mut db_page);
+    println! ("|another_use_db_page_ref|after|{}  ", db_page.page_id);
+
+}
+fn internal_db_page_ref(ref_db_page: &mut DBPage) {
+    println! ("|internal_db_page_ref|{}  ", ref_db_page.page_id);
+    ref_db_page.page_id = 3;
 }
