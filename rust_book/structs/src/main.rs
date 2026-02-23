@@ -182,3 +182,17 @@ fn internal_db_page_ref(ref_db_page: &mut DBPage) {
     println! ("|internal_db_page_ref|{}  ", ref_db_page.page_id);
     ref_db_page.page_id = 3;
 }
+struct MyPracticeStruct {
+    age: u8,
+    name : String,
+    id : u32
+
+}
+fn use_struct() {
+    let mut my_practice_struct = MyPracticeStruct {
+        age : 30,
+        name : String::from("Amit"),
+        id : 1
+    };
+    my_practice_struct.age = 40;
+}
