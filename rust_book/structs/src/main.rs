@@ -58,6 +58,7 @@ fn main() {
 	//test_struct();
         use_dbpage();
         another_use_db_page_ref();
+        test_new_user();
 }
 fn create_tuple_structs() {
 	let area = TupleStructArea(10, 20);
@@ -195,4 +196,21 @@ fn use_struct() {
         id : 1
     };
     my_practice_struct.age = 40;
+}
+struct NewUser {
+    active : bool,
+    user_name : String,
+    email : String,
+    sign_in_count : i32
+}
+fn test_new_user() {
+    let mut my_new_user = NewUser {
+        email : String::from("email@yahoo,com"),
+        user_name : String::from("John Doe"),
+        active : true,
+        sign_in_count : 0
+    };
+    println!("{}", my_new_user.email );
+    my_new_user.email = String::from("newuser@yahoo.com");
+    println!("{}", my_new_user.email );
 }
