@@ -1,3 +1,4 @@
+use structs::some_function;
 struct MyUnitLikeStruct;
 struct TupleStructArea(i32, i32);
 struct TupleStructCoordinate(i32, i32);
@@ -56,9 +57,10 @@ fn main() {
 	//area_by_tuple();
 	//area_by_struct();
 	//test_struct();
-        use_dbpage();
-        another_use_db_page_ref();
-        test_new_user();
+        //use_dbpage();
+        //another_use_db_page_ref();
+        //test_new_user();
+        some_function();
 }
 fn create_tuple_structs() {
 	let area = TupleStructArea(10, 20);
